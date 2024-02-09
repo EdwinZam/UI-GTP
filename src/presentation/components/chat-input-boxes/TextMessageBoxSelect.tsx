@@ -21,6 +21,7 @@ export const TextMessageBoxSelect = ({onSendMessage, placeholder, disableCorrect
         event.preventDefault();
         //console.log('HandleSendMessage')
         if(message.trim().length === 0 ) return;
+        if(selectedOption === '' ) return;
         onSendMessage(message, selectedOption);
         setMessage('');
     }

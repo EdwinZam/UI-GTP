@@ -1,0 +1,45 @@
+
+export const prosConsStreamUseCase = async (prompt: string) => {
+
+    try {
+
+        const resp = await fetch(`http://localhost:3000/gpt/pros-cons-discusser-stream`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ prompt }),
+            //todo:abortSignal
+        });
+        if (!resp.ok) throw new Error('No se pudo realizar la comparación');
+
+        const reader = resp.body?.getReader();
+
+        if(!reader){
+            console.log('No se pudo generar el reader')
+            return null;
+        }
+
+        return reader;
+
+        // const decoder = new TextDecoder();
+
+        // let text = '';
+
+        // while(true){
+        //     const { value, done } = await reader.read();
+        //     if(done){
+        //         break;
+        //     }
+
+        //     const decodeChunk = decoder.decode(value, {stream: true});
+        //     text += decodeChunk;
+        //     console.log(text)
+        // }
+
+    } catch (error) {
+        console.log(error)
+        return null;
+    }
+
+}
