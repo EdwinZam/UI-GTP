@@ -4,7 +4,7 @@ export const translateUseCase = async (prompt: string, lang: string) => {
 
     try {
 
-        const resp = await fetch(`http://localhost:3000/gpt/translate`, {
+        const resp = await fetch(`${import.meta.env.VITE_GPT_API}/translate`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

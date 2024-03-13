@@ -11,7 +11,7 @@ export const audioToTextUseCase = async (audioFile: File, prompt?: string) => {
             formData.append('prompt', prompt);
         }
 
-        const resp = await fetch(`http://localhost:3000/gpt/audio-to-text`, {
+        const resp = await fetch(`${import.meta.env.VITE_GPT_API}/audio-to-text`, {
             method: 'POST',
             body: formData
         });
